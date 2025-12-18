@@ -1,0 +1,28 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: ghost
+  namespace: argo
+spec:
+  project: deploy
+  source:
+    repoURL: https://github.com/AmielDylan/sre-project.git
+    targetRevision: main
+    path: ghost
+    helm:
+      valueFiles: 
+        - values.yaml
+      values: |
+        mysql:
+          image:
+            registry: docker.io
+            repository: bitnami/mysql
+            tag: latest
+            pullPolicy: IfNotPresent
+  destination:
+      namespace: app
+      server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

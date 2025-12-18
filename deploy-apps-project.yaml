@@ -1,0 +1,24 @@
+kind: AppProject
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: deploy
+  namespace: argo
+spec:
+  clusterResourceWhitelist:
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+    - group: apiextentions.k8s.io
+      kind: CustomResourceDefinition
+  description: Devops Training Blog Project
+  destinations:
+    - name: "*"
+      namespace: "*"
+      server: https://kubernetes.default.svc
+  roles:
+    - name: deploy-app
+      groups: 
+        - rbac.authorization.k8s.io
+  sourceRepos:
+    - "*"

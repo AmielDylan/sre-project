@@ -186,6 +186,12 @@ volumePermissions:
 
 mysql:
   enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/mysql
+    tag: latest
+    pullPolicy: IfNotPresent
+    pullSecrets: []
   metrics:
     enabled: true
   architecture: standalone
