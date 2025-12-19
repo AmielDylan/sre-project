@@ -15,9 +15,9 @@ spec:
       values: |
         mysql:
           image:
-            registry: docker.io
+            registry: public.ecr.aws
             repository: bitnami/mysql
-            tag: latest
+            tag: "8.0.36"
             pullPolicy: IfNotPresent
   destination:
       namespace: app
