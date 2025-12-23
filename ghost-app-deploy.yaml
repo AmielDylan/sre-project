@@ -12,13 +12,6 @@ spec:
     helm:
       valueFiles: 
         - values.yaml
-      values: |
-        mysql:
-          image:
-            registry: docker.io
-            repository: bitnami/mysql
-            tag: latest
-            pullPolicy: IfNotPresent
   destination:
       namespace: app
       server: https://kubernetes.default.svc
