@@ -13,12 +13,27 @@ spec:
       valueFiles: 
         - values.yaml
       values: |
+        # Réduis Ghost
+        resourcesPreset: "nano"
+        
+        # MySQL avec image OFFICIELLE
         mysql:
           image:
             registry: docker.io
-            repository: bitnami/mysql
-            tag: latest
+            repository: mysql
+            tag: "8.0"
             pullPolicy: IfNotPresent
+          
+          # Réduis les ressources
+          primary:
+            resourcesPreset: "nano"
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                cpu: 500m
+                memory: 512Mi
   destination:
       namespace: app
       server: https://kubernetes.default.svc
